@@ -1,6 +1,5 @@
 ﻿
 using System;
-using System.Runtime.CompilerServices;
 
 namespace ST10390916PROGPOE
 {
@@ -22,17 +21,23 @@ namespace ST10390916PROGPOE
                     case "1":   //new recipe
                         if (hasCurrentRecipe)  //check if a current recipe has been entered.
                         {
-                            Console.WriteLine("Your current recipe will be overwritten");
+                            Console.WriteLine("Your current recipe will be overwritten.\nProceed?\n1. Yes\n2. No");
+                            String answer = Console.ReadLine();
+                            if (answer.Equals("1"))
+                            {
+                                Console.Write("Enter your recipe name: ");
+                                //Enter and check details
+                                //set recipe to true
+
+                            }
                             break;
                         }
-                        Console.Write("Enter your recipe name: ");
-                        //Enter and check details
-                        //set recipe to true
+
                         break;
 
                     case "2":   //view recipe
                         if (!hasCurrentRecipe)  //check if a recipe has been entered.
-                        {  
+                        {
                             Console.WriteLine("You don't currently have a recipe saved.");
                             break;
                         }
@@ -40,8 +45,23 @@ namespace ST10390916PROGPOE
 
                     case "3":   //scale recipe ingredients
                         if (!hasCurrentRecipe) //check if a recipe has been entered.
+                        {
                             Console.WriteLine("You don't currently have a recipe saved.");
+                            break;
+                        }
+
                         Console.Write("Enter the scale to change ingredient quantities: ");
+                        break;
+
+                    case "4": //Reset recipe scale
+                        if (!hasCurrentRecipe)  //check if a recipe has been entered.
+                        {
+                            Console.WriteLine("You don't currently have a recipe saved.");
+                            break;
+                        }
+                        break;
+                    case "5":
+                        //exit app
                         break;
                 }
             }
