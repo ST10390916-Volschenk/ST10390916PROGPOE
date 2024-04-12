@@ -18,5 +18,11 @@ namespace ST10390916PROGPOE
             this.UnitOfMeasurement = unitOfMeasurement;
             this.IngredientAmount = ingredientAmount;
         }
+
+        public override string ToString()
+        {
+            string msg = IngredientName + " " + IngredientAmount + " " + UnitOfMeasurement;
+            return msg;
+        }
     }
 }

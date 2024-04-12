@@ -12,7 +12,9 @@ namespace ST10390916PROGPOE
         public int NumOfSteps { get; set; }
         public List<String> RecipeSteps { get; set; }                                   //List of the recipe steps
 
-        public Recipe(string recipeName, int numOfIngredients, List<Ingredient> ingredients, double ingredientScale, int numOfSteps, List<string> recipeSteps )
+        /////////////////////////////////////////Constructor/////////////////////////////////////////////////////////////////
+
+        public Recipe(string recipeName, int numOfIngredients, List<Ingredient> ingredients, double ingredientScale, int numOfSteps, List<string> recipeSteps)
         {
             RecipeName = recipeName;
             NumOfIngredients = numOfIngredients;
@@ -20,6 +22,26 @@ namespace ST10390916PROGPOE
             IngredientScale = ingredientScale;
             NumOfSteps = numOfSteps;
             RecipeSteps = recipeSteps;
+        }
+
+        //////////////////////ToString method for displaying recipe////////////////////////////////////////////////////////
+
+        public override String ToString()
+        {
+            String msg = $"Your recipe:\n{RecipeName}\n\nIngredients:\n\n";
+
+            foreach (var ingredient in Ingredients)
+            {
+                msg += ingredient.ToString() + "\n";
+            }
+
+            msg += "\nSteps: \n\n";
+
+            for (int i = 0; i < NumOfSteps; i++)
+            {
+                msg += i + ". " + RecipeSteps[i].ToString() + "\n";
+            }
+            return msg;
         }
     }
 }

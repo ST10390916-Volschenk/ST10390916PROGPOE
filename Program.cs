@@ -17,9 +17,6 @@ namespace ST10390916PROGPOE
             String option = "0";
             while (!option.Equals("5"))
             {
-
-
-
                 Console.WriteLine("Select an option below (eg. 2):");
                 Console.WriteLine("1. Make a new recipe\n2. View current recipe\n3. Scale your recipe\n4. Reset recipe scale\n5. Exit\n\nYour selction: ");
                 option = Console.ReadLine();
@@ -117,9 +114,11 @@ namespace ST10390916PROGPOE
                             steps.Add(Console.ReadLine());
                         }
 
+                        //create recipe and display it using ToString
                         Recipe recipe = new Recipe(recipeName, numOfIngredients, ingredients, ingredientScale, numOfSteps, steps);
 
                         hasCurrentRecipe = true;
+                        recipe.ToString();
 
                         break;
 
