@@ -10,19 +10,13 @@ namespace ST10390916PROGPOE
     {
         public String IngredientName {  get; set; }
         public String UnitOfMeasurement { get; set; }
-        public String IngredientAmount { get; set; }
+        public double IngredientAmount { get; set; }
 
-        public Ingredient(string ingredientName, string unitOfMeasurement, string ingredientAmount)
+        public Ingredient(string ingredientName, string unitOfMeasurement, double ingredientAmount)
         {
             this.IngredientName = ingredientName;
             this.UnitOfMeasurement = unitOfMeasurement;
             this.IngredientAmount = ingredientAmount;
-        }
-
-        public override string ToString()
-        {
-            string msg = IngredientName + " " + IngredientAmount + " " + UnitOfMeasurement;
-            return msg;
         }
     }
 }
