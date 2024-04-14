@@ -8,27 +8,28 @@ namespace ST10390916PROGPOE
     {
         static void Main(string[] args)
         {
-            bool hasCurrentRecipe = false;
-            String recipeName, ingredientName, unitOfMeasurement, ingredientAmount;
+            Recipe recipe = null;
+            String recipeName, ingredientName, unitOfMeasurement;
             int numOfIngredients = 0;
             int numOfSteps = 0;
-            double ingredientScale;
+            double ingredientScale = 1;
+            double ingredientAmount = 1;
 
             String option = "0";
             while (!option.Equals("5"))
             {
                 Console.WriteLine("Select an option below (eg. 2):");
-                Console.WriteLine("1. Make a new recipe\n2. View current recipe\n3. Scale your recipe\n4. Reset recipe scale\n5. Exit\n\nYour selction: ");
+                Console.Write("1. Make a new recipe\n2. View current recipe\n3. Scale your recipe\n4. Reset recipe scale\n5. Clear all recipe data\n6. Exit\n\nYour selction: ");
                 option = Console.ReadLine();
                 switch (option)
                 {
-                    ///////////////////////////////////////create new recipe/////////////////////////////////////////////////////
+                    //-------------------------------create new recipe--------------------------------------------------------------------
 
                     case "1":
 
                         //checking if a recipe already exists
 
-                        if (hasCurrentRecipe)
+                        if (recipe == null)
                         {
                             Console.WriteLine("Your current recipe will be overwritten.\nProceed?\n1. Yes\n2. No");
                             String answer = Console.ReadLine();
@@ -67,7 +68,7 @@ namespace ST10390916PROGPOE
 
                         List<Ingredient> ingredients = new List<Ingredient>();
 
-                        for (int i = 0; i < numOfIngredients; i++)
+                        for (int i = 1; i < numOfIngredients + 1; i++)
                         {
                             Console.Write($"Enter ingredient no {i}: ");
                             ingredientName = Console.ReadLine();
@@ -75,9 +76,23 @@ namespace ST10390916PROGPOE
                             Console.WriteLine($"Enter the unit of measurement for ingredient no {i}: ");
                             unitOfMeasurement = Console.ReadLine();
 
-                            Console.Write($"Enter the quantity of ingredient no {i} in {unitOfMeasurement}: ");
-                            ingredientAmount = Console.ReadLine();
+                            validNum = false;
 
+                            while (!validNum)
+                            {
+                                Console.Write($"Enter the quantity of ingredient no {i} in {unitOfMeasurement}: ");
+
+                                try
+                                {
+                                    ingredientAmount = double.Parse(Console.ReadLine());
+                                    validNum = true;
+                                }
+                                catch (Exception ex)
+                                {
+                                    Console.WriteLine("Enter a valid number.");
+                                }
+
+                            }
                             ingredients.Add(new Ingredient(ingredientName, unitOfMeasurement, ingredientAmount));
                         }
 
@@ -108,50 +123,93 @@ namespace ST10390916PROGPOE
                         //list of steps
                         List<String> steps = new List<String>();
 
-                        for (int i = 0; i < numOfSteps; i++)
+                        for (int i = 1; i < numOfSteps + 1; i++)
                         {
                             Console.Write($"Enter step no {i}: ");
                             steps.Add(Console.ReadLine());
                         }
 
                         //create recipe and display it using ToString
-                        Recipe recipe = new Recipe(recipeName, numOfIngredients, ingredients, ingredientScale, numOfSteps, steps);
+                        recipe = new Recipe(recipeName, numOfIngredients, ingredients, ingredientScale, numOfSteps, steps);
 
-                        hasCurrentRecipe = true;
+                        Console.WriteLine("New recipe created.");
+
                         recipe.ToString();
 
                         break;
 
-                    /////////////////////////View the current recipe////////////////////////////////////////////////////
+                    //----------------------------------View the current recipe---------------------------------------
 
                     case "2":
-                        if (!hasCurrentRecipe)  //check if a recipe has been entered.
-                        {
-                            Console.WriteLine("You don't currently have a recipe saved.");
-                            break;
-                        }
-                        break;
-
-                    case "3":   //scale recipe ingredients
-                        if (!hasCurrentRecipe) //check if a recipe has been entered.
+                        if (recipe == null)  //check if a recipe has been entered.
                         {
                             Console.WriteLine("You don't currently have a recipe saved.");
                             break;
                         }
 
-                        Console.Write("Enter the scale to change ingredient quantities: ");
+                        recipe.ToString();
                         break;
 
-                    case "4": //Reset recipe scale
-                        if (!hasCurrentRecipe)  //check if a recipe has been entered.
+                    //------------------------------Scale recipe ingredients-------------------------------------------
+
+                    case "3":
+                        if (recipe == null) //check if a recipe has been entered.
                         {
                             Console.WriteLine("You don't currently have a recipe saved.");
                             break;
                         }
+
+                        validNum = false;
+
+                        while (!validNum)
+                        {
+                            Console.Write("Enter the scale to change ingredient quantities: ");
+
+                            try
+                            {
+                                ingredientScale = double.Parse(Console.ReadLine());
+                                validNum = true;
+                            }
+                            catch (Exception ex)
+                            {
+                                Console.WriteLine("Enter a valid number.");
+                            }
+                        }
+
+                        recipe.IngredientScale = ingredientScale;
+
+                        Console.WriteLine($"Recipe scale changed to {ingredientScale}");
+                        recipe.ToString();
+
                         break;
+
+                    //-----------------------------Reset Recipe Scale--------------------------------------------------------------
+
+                    case "4":
+                        if (recipe == null) //check if a recipe has been entered.
+                        {
+                            Console.WriteLine("You don't currently have a recipe saved.");
+                            break;
+                        }
+
+                        recipe.IngredientScale = 1;
+                        Console.WriteLine("Recipe scale reset successful.");
+                        recipe.ToString();
+
+                        break;
+
+                    //-----------------------------Clear all recipe data--------------------------------------------------------------
+
                     case "5":
-                        //exit app
+                        recipe = null;
                         break;
+
+                    //----------------------------------Exit application----------------------------------------------------------------
+
+                    case "6":
+
+                        break;
+
                 }
             }
         }
