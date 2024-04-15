@@ -6,5 +6,8 @@
 3. Open the .sln file in Visual Studio.
 4. Run the program by clicking the start button.
 
+Github repository:
+https://github.com/ST10390916-Volschenk/ST10390916PROGPOE.git
+
 References used in project: 
              https://www.w3schools.com/cs/cs_syntax.php
