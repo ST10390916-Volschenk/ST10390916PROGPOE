@@ -35,7 +35,8 @@ namespace ST10390916PROGPOE
 
         public override String ToString()
         {
-            String msg = $"Your recipe:\n{RecipeName}\n\nCurrent ingredient scale: x{IngredientScale}\nIngredients:\n\n";
+            String msg = "-------------------------------------------------\n";
+            msg += $"Your recipe:\n{RecipeName}\n\nCurrent ingredient scale: x{IngredientScale}\nIngredients:\n\n";
 
             foreach (var ingredient in Ingredients)
             {
@@ -49,7 +50,8 @@ namespace ST10390916PROGPOE
                 msg += i + ". " + RecipeSteps[i - 1].ToString() + "\n";
             }
 
-            msg += "\nEnjoy";
+            msg += "\nEnjoy\n";
+            msg += "-------------------------------------------------";
             return msg;
         }
     }
