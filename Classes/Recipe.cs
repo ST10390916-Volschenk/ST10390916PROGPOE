@@ -1,4 +1,11 @@
-﻿using System;
+﻿// Weylin Volschenk
+// ST10390916
+// Group 1
+
+// References: 
+//             https://www.w3schools.com/cs/cs_syntax.php
+
+using System;
 using System.Collections.Generic;
 
 namespace ST10390916PROGPOE
@@ -47,3 +54,5 @@ namespace ST10390916PROGPOE
         }
     }
 }
+//------------------------------------------...ooo000 END OF FILE 000ooo...------------------------------------------------------//
+
