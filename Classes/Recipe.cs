@@ -37,10 +37,12 @@ namespace ST10390916PROGPOE
 
             msg += "\nSteps: \n\n";
 
-            for (int i = 0; i < NumOfSteps; i++)
+            for (int i = 1; i < NumOfSteps + 1; i++)
             {
-                msg += i + ". " + RecipeSteps[i].ToString() + "\n";
+                msg += i + ". " + RecipeSteps[i - 1].ToString() + "\n";
             }
+
+            msg += "\nEnjoy";
             return msg;
         }
     }
