@@ -1,4 +1,10 @@
-﻿
+﻿// Weylin Volschenk
+// ST10390916
+// Group 1
+
+// References: 
+//             https://www.w3schools.com/cs/cs_syntax.php
+
 using System;
 using System.Collections.Generic;
 
@@ -16,9 +22,9 @@ namespace ST10390916PROGPOE
             double ingredientAmount = 1;
 
             String option = "0";
-            while (!option.Equals("5"))
+            while (!option.Equals("6"))
             {
-                Console.WriteLine("Select an option below (eg. 2):");
+                Console.WriteLine("\nSelect an option below (eg. 2):");
                 Console.Write("1. Make a new recipe\n2. View current recipe\n3. Scale your recipe\n4. Reset recipe scale\n5. Clear all recipe data\n6. Exit\n\nYour selction: ");
                 option = Console.ReadLine();
                 switch (option)
@@ -29,7 +35,7 @@ namespace ST10390916PROGPOE
 
                         //checking if a recipe already exists
 
-                        if (recipe == null)
+                        if (recipe != null)
                         {
                             Console.WriteLine("Your current recipe will be overwritten.\nProceed?\n1. Yes\n2. No");
                             String answer = Console.ReadLine();
@@ -73,7 +79,7 @@ namespace ST10390916PROGPOE
                             Console.Write($"Enter ingredient no {i}: ");
                             ingredientName = Console.ReadLine();
 
-                            Console.WriteLine($"Enter the unit of measurement for ingredient no {i}: ");
+                            Console.Write($"Enter the unit of measurement for ingredient no {i}: ");
                             unitOfMeasurement = Console.ReadLine();
 
                             validNum = false;
@@ -132,9 +138,9 @@ namespace ST10390916PROGPOE
                         //create recipe and display it using ToString
                         recipe = new Recipe(recipeName, numOfIngredients, ingredients, ingredientScale, numOfSteps, steps);
 
-                        Console.WriteLine("New recipe created.");
+                        Console.WriteLine("\nNew recipe created.");
 
-                        recipe.ToString();
+                        Console.WriteLine(recipe.ToString());
 
                         break;
 
@@ -147,7 +153,7 @@ namespace ST10390916PROGPOE
                             break;
                         }
 
-                        recipe.ToString();
+                        Console.WriteLine(recipe.ToString());
                         break;
 
                     //------------------------------Scale recipe ingredients-------------------------------------------
@@ -179,7 +185,7 @@ namespace ST10390916PROGPOE
                         recipe.IngredientScale = ingredientScale;
 
                         Console.WriteLine($"Recipe scale changed to {ingredientScale}");
-                        recipe.ToString();
+                        Console.WriteLine(recipe.ToString());
 
                         break;
 
@@ -194,7 +200,7 @@ namespace ST10390916PROGPOE
 
                         recipe.IngredientScale = 1;
                         Console.WriteLine("Recipe scale reset successful.");
-                        recipe.ToString();
+                        Console.WriteLine(recipe.ToString());
 
                         break;
 
@@ -202,6 +208,7 @@ namespace ST10390916PROGPOE
 
                     case "5":
                         recipe = null;
+                        Console.WriteLine("Recipe data cleared.");
                         break;
 
                     //----------------------------------Exit application----------------------------------------------------------------
@@ -210,8 +217,14 @@ namespace ST10390916PROGPOE
                         Environment.Exit(0);
                         break;
 
+                    default:
+                        Console.WriteLine("Enter a valid option. Eg. 1");
+                        break;
+
                 }
             }
         }
     }
 }
+//------------------------------------------...ooo000 END OF FILE 000ooo...------------------------------------------------------//
+
